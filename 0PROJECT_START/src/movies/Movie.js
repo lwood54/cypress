@@ -1,20 +1,15 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { Link } from "react-router-dom"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export function Movie({ movie, config }) {
   return (
     <li>
-      <Link to={`/movie/${movie.id}`}>
-        {config.images?.base_url && (
-          <img
-            src={config.images.base_url + "w342" + movie.poster_path}
-            alt={movie.title + " Poster"}
-          />
-        )}
+      <Link to={`/movie/${movie.id}`} data-testid="movies-list-movie">
+        {config.images?.base_url && <img src={config.images.base_url + 'w342' + movie.poster_path} alt={movie.title + ' Poster'} />}
       </Link>
     </li>
-  )
+  );
 }
 
 Movie.propTypes = {
@@ -28,4 +23,4 @@ Movie.propTypes = {
       base_url: PropTypes.string,
     }),
   }),
-}
+};
