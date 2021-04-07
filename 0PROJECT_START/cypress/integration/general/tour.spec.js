@@ -6,6 +6,21 @@
 // https://www.chaijs.com/api/bdd/   <-- Chains to use with should
 describe('Make sure site loads', () => {
   beforeEach(() => {
+    const moviesListUrl =
+      'https://api.themoviedb.org/3/discover/movie?language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&api_key=0d1815d757ac05b226c8d15e4ed8144e';
+
+    const configUrl = 'https://api.themoviedb.org/3/configuration?api_key=0d1815d757ac05b226c8d15e4ed8144e';
+
+    cy.intercept(moviesListUrl, {
+      // statusCode: 200,
+      // body: { results: 'hello from the network tab' },
+      fixture: 'moviesList',
+    });
+
+    cy.intercept(configUrl, {
+      fixture: 'config',
+    });
+
     cy.visit('http://localhost:3000');
   });
 
