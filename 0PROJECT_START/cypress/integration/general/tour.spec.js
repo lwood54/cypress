@@ -40,5 +40,10 @@ describe('Make sure site loads', () => {
     cy.get('input').clear();
     cy.get(':nth-child(5) > [data-testid=movies-list-movie] > img').click();
     /* ==== End Cypress Studio ==== */
+
+    cy.fixture('moviesList').then((jsonData) => {
+      console.log('jsonData: ', jsonData.results[0].title);
+      expect(jsonData.results[0].title).to.eq('Godzilla vs. Kong');
+    });
   });
 });
