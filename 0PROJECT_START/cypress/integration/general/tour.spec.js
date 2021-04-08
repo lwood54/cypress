@@ -27,7 +27,8 @@ describe('Make sure site loads', () => {
   it('Page Loads', () => {
     cy.contains('Filter');
 
-    cy.get('[data-testid=movies-list-movie')
+    // cy.get('[data-testid=movies-list-movie')
+    cy.findAllByTestId('movies-list-movie')
       .first()
       .then(($movie) => {
         const movieUrl = $movie.attr('href');

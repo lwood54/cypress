@@ -23,3 +23,22 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import '@testing-library/cypress/add-commands';
+
+Cypress.Commands.add('login', (email = 'lwood3499@gmail.com') => {
+  cy.window().then(() => {
+    cy.visit('/');
+    cy.request({
+      method: 'POST',
+      url: 'https://somefakesite.com',
+      body: {
+        user: 'logan',
+        email,
+      },
+    }).then((res) => {
+      Cypress.log({
+        name: 'Logged In',
+      });
+    });
+  });
+});
